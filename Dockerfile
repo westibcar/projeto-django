@@ -1,24 +1,27 @@
-# Use uma imagem base oficial do Python
-FROM python:3.12-slim
+# Use uma imagem base Python
+FROM python:3.10-slim
 
-# Defina o diretório de trabalho dentro do container
+# Defina o diretório de trabalho no contêiner
 WORKDIR /app
 
-# Copie o arquivo requirements.txt para o diretório de trabalho
-COPY requirements.txt .
+# Copie o arquivo requirements.txt para o contêiner
+COPY requirements.txt /app/
 
-# Instale as dependências do projeto
+# Instale as dependências do Python
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copie todo o conteúdo do projeto para o diretório de trabalho
-COPY . .
+# Copie o restante do código da aplicação
+COPY . /app/
 
-# Defina as variáveis de ambiente para o Django
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
+# Copie o script de inicialização
+COPY entrypoint.sh /app/entrypoint.sh
 
-# Exponha a porta que o gunicorn usará
+# Dê permissão de execução para o script
+RUN chmod +x /app/entrypoint.sh
+
+# Expor a porta que a aplicação usará
 EXPOSE 8000
 
-# Execute as migrações e inicie o servidor usando gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "udayacademy.wsgi:application"]
+# Use o script de inicialização como o comando inicial
+CMD ["/app/entrypoint.sh"]
+ENTRYPOINT ["gunicorn", "--workers", "3", "--bind", "0.0.0.0:8000", "myproject.wsgi:application"]

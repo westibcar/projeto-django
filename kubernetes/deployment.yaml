@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: udayacademy-container
-        image: udaytc/site-teste-x86_64  # Use o nome da imagem que você criou
+        image: udaytc/cadastro-cliente  # Use o nome da imagem que você criou
         ports:
         - containerPort: 8000
         env:
