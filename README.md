@@ -3,8 +3,15 @@ Este projeto esta sendo criado para os cursos da Uday Academy, este projeto é p
 
 ## Executando
 Para você executar este código você vai precisar dos seguintes passos.
-#### Baixar o repositório
+#### 1. Baixar o repositório
 
 ```bash
 git clone git@github.com:westibcar/projeto-django.git
+cd projeto-django
 ```
+
+#### 2. Execute a aplicação
+```bash
+python manage.py runserver
+```
+
