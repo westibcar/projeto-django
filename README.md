@@ -20,6 +20,12 @@ python -m venv venv
 source venv/bin/activate
 ```
 
+# Migração do Bando de Dados
+```bash
+python manage.py makemigrations
+python manage.py migrate
+```
+
 #### 4. Execute a aplicação
 ```bash
 python manage.py runserver
