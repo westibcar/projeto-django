@@ -14,10 +14,18 @@ from pathlib import Path
 import os
 from pathlib import Path
 
-# Definição do BASE_DIR
+# settings.py
+
+import os
+from pathlib import Path
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 STATIC_URL = '/static/'
-# STATICFILES_DIRS = [BASE_DIR / "static"]
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
+STATIC_ROOT = BASE_DIR / 'staticfiles'
 # Outras configurações...
 
 
