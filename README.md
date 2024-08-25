@@ -10,8 +10,20 @@ git clone git@github.com:westibcar/projeto-django.git
 cd projeto-django
 ```
 
-#### 2. Execute a aplicação
+#### 2. Crie um ambiente virtual com o venv
+```bash
+python -m venv venv
+```
+
+#### 3. Agora ative o ambiente virtual 
+```bash
+source venv/bin/activate
+```
+
+#### 4. Execute a aplicação
 ```bash
 python manage.py runserver
 ```
+
+NOTA: Agora acesse com seu Browser http://127.0.0.1:8000/
 
