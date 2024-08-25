@@ -33,3 +33,13 @@ python manage.py runserver
 
 NOTA: Agora acesse com seu Browser http://127.0.0.1:8000/
 
+#### 4. Variaveis
+- 4.1 - localmente na sua máquina copie o .env-example que esta no diretorio env-example e cole no mesmo lugar ele vai aparece como ".env-example copy" altere para .env
+- 4.2 - agora gere um SECRET_KEY com o comando abaixo, e depoi cole na variavel SECRET_KEY.
+
+```bash
+python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
+
+
+

@@ -1,0 +1,22 @@
+services:
+  app:
+    container_name: udayapp
+    build:
+      context: .
+    ports:
+      - 8000:8000
+    volumes:
+      - ./static/clients:/static/clients/
+      - ./static/images:/static/images/
+    env_file:
+      - ./env-example/.env
+    depends_on:
+      - psql
+  
+  psql:
+    container_name: psql
+    image: postgres:13-alpine
+    volumes:
+      - ./data/postgres/data:/var/lib/postgresql/data/
+    env_file:
+      - ./env-example/.env

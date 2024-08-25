@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cadastro-cliente-deployment
+  labels:
+    app: cadastro-cliente
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: cadastro-cliente
+  template:
+    metadata:
+      labels:
+        app: cadastro-cliente
+    spec:
+      containers:
+      - name: cadastro-cliente
+        image: udaytc/cadastro-cliente:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DJANGO_SETTINGS_MODULE
+          valueFrom:
+            configMapKeyRef:
+              name: cadastro-cliente-config
+              key: DJANGO_SETTINGS_MODULE
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: cadastro-cliente-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: cadastro-cliente-config
+              key: POSTGRES_PORT
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: cadastro-cliente-config
+              key: POSTGRES_DB
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: cadastro-cliente-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: cadastro-cliente-config
+              key: POSTGRES_PASSWORD
+        volumeMounts:
+        - name: static-files
+          mountPath: /app/static
+      volumes:
+      - name: static-files
+        emptyDir: {}
