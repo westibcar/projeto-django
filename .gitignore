@@ -6,12 +6,15 @@ __pycache__/
 *.swp
 *~
 
+
+
 # Django
 *.log
 local_settings.py
 db.sqlite3
 media/
 staticfiles/
+data/
 
 # Environments
 .env
