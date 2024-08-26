@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: udayapp
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: udayapp
+  template:
+    metadata:
+      labels:
+        app: udayapp
+    spec:
+      containers:
+      - name: udayapp
+        image: udaytc/cadastro-cliente:latest
+        ports:
+        - containerPort: 8000
+        volumeMounts:
+        - name: clients-volume
+          mountPath: /static/clients/
+        - name: images-volume
+          mountPath: /static/images/
+        envFrom:
+        - configMapRef:
+            name: app-env
+        # - secretRef:
+        #     name: app-env
+      volumes:
+      - name: clients-volume
+        persistentVolumeClaim:
+          claimName: clients-pvc
+      - name: images-volume
+        persistentVolumeClaim:
+          claimName: images-pvc
