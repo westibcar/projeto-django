@@ -3,8 +3,12 @@ kind: ConfigMap
 metadata:
   name: app-env
 data:
-  SECRET_KEY: wi_=+l%^#@=rn4h0%ull&0i)rj-2uz_(&mghvq6il0(lt!w27e
-  ALLOWED_HOSTS: "127.0.0.1, localhost, 0.0.0.0"
+  DATABASE_ENGINE: "postgresql_psycopg2"
+  POSTGRES_HOST: 'psql.psql-service.default.svc.cluster.local'
+  SECRET_KEY: 'wi_=+l%^#@=rn4h0%ull&0i)rj-2uz_(&mghvq6il0(lt!w27e'
+  DJANGO_ALLOWED_HOSTS: "*"
+  POSTGRES_USER: 'uday_user'
+  POSTGRES_PASSWORD: '@!314dD@'
   DEBUG: "1"
 
 ---
@@ -14,9 +18,9 @@ kind: ConfigMap
 metadata:
   name: psql-env
 data:
-  DB_ENGINE: django.db.backends.postgresql
-  POSTGRES_DB: udayacademy_db
-  POSTGRES_USER: uday_user
+  DB_ENGINE: 'django.db.backends.postgresql'
+  POSTGRES_DB: 'udayacademy_db'
+  POSTGRES_USER: 'uday_user'
   POSTGRES_PASSWORD: '@!314dD@'
-  POSTGRES_HOST: psql
-  POSTGRES_PORT: "5432"
+  POSTGRES_HOST: 'psql.psql-service.default.svc.cluster.local'
+  POSTGRES_PORT: '5432'
