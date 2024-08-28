@@ -30,10 +30,10 @@ RUN python -m venv /venv && \
 COPY . /app/
 
 # Copia o script de entrada para o contêiner
-COPY scripts/entrypoint_copy.sh /scripts/entrypoint_copy.sh
+COPY scripts/entrypoint.sh /scripts/entrypoint.sh
 
 # Ajusta as permissões do script
-RUN chmod +x /scripts/entrypoint_copy.sh
+RUN chmod +x /scripts/entrypoint.sh
 
 # Cria um usuário não-root para rodar a aplicação e ajusta permissões
 RUN adduser --disabled-password --no-create-home useruday && \
@@ -49,4 +49,4 @@ USER useruday
 EXPOSE 8000
 
 # Define o script de entrada
-ENTRYPOINT ["/scripts/entrypoint_copy.sh"]
+ENTRYPOINT ["/scripts/entrypoint.sh"]
